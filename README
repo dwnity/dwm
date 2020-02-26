@@ -7,13 +7,15 @@ Requirements
 ------------
 In order to build dwm you need the Xlib header files.
 
-Dependencies
+Xlib header files
+     These header files can be installed with
+         sudo apt install libxft-dev libx11-dev libxinerama-dev
 For transparency both a wallpaper setter and a compositor is neccesary
     the packages used by this fork can be installed with
         sudo apt install compton nitrogen
         note: nitrogen needs to be used at least once to set a wallpaper
-    This fork uses scrot for screenshots which can configured using
-        sudo apt install scrot && mkdir ~/screenshots
+This fork uses scrot for screenshots which can configured using
+    sudo apt install scrot && mkdir ~/screenshots
 
 Installation
 ------------
