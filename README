@@ -7,6 +7,9 @@ Requirements
 ------------
 In order to build dwm you need the Xlib header files.
 
+Dependencies
+This fork uses scrot for screenshots which can configured using
+        sudo apt install scrot && mkdir ~/screenshots
 
 Installation
 ------------
