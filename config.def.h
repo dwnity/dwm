@@ -71,8 +71,8 @@ static const char *browser[]  = { "firefox", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_a,      spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_a,      spawn,          {.v = termcmd } },
+	{ MODKEY,                       XK_r,      spawn,          {.v = dmenucmd } },
+	{ MODKEY|ShiftMask,             XK_r,	   spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = browser } },
 	{ MODKEY|ShiftMask,             XK_d,      setopacity,     {.f = -0.05} },
 	{ MODKEY|ShiftMask,             XK_i,      setopacity,     {.f = +0.05} },
