@@ -134,6 +134,9 @@ static Key keys[] = {
 	{ KeyPress,    MODKEY|ShiftMask,                XK_q,        quit,           {0} },
 };
 
+/* custom mouse functions */
+static void switchmain(const Arg *arg);
+
 /* button definitions */
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
 static Button buttons[] = {
@@ -149,8 +152,18 @@ static Button buttons[] = {
 	{ ClkClientWin,         MODKEY,                   Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,                   Button3,        resizemouse,    {0} },
 	{ ClkClientWin,         MODKEY|ShiftMask,         Button3,        setopacity,     {.f = 1.0} },
+	{ ClkTagBar,            0,                        Button3,        switchmain,     {0} },
 	{ ClkTagBar,            0,                        Button1,        view,           {0} },
 	{ ClkTagBar,            0,                        Button3,        toggleview,     {0} },
 	{ ClkTagBar,            MODKEY,                   Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,                   Button3,        toggletag,      {0} },
 };
+
+void
+switchmain(const Arg *arg) {
+	Arg a = {0};
+
+	view(arg);
+	view(&a);
+	toggleview(arg);
+}
