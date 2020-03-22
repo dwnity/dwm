@@ -60,9 +60,13 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "gnome-terminal", NULL };
 static const char *browser[]  = { "firefox", NULL };
 
+/* custom functions */
+static void toggleemoji();
+
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_r,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_e,      toggleemoji,    {0} },
 	{ MODKEY|ShiftMask,             XK_r,	   spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = browser } },
 	{ MODKEY|ControlMask,		XK_d,	   spawn,	   SHCMD("pactl -- set-sink-volume 0 -10%") },
@@ -118,3 +122,9 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
 
+void
+toggleemoji(){
+	char togglelayout[116]="[ `ibus engine` = uniemoji ] && ibus engine `cat $HOME/.ibus` || `ibus engine > $HOME/.ibus && ibus engine uniemoji`";
+	int layRet=system(togglelayout);
+	if (layRet ==-1) {}
+}
