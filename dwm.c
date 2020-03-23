@@ -1448,10 +1448,11 @@ run(void)
 
 void
 runAutostart(void) {
-	char autostart[100]="setxkbmap -option compose:caps;\
-			dwmstatus 2>&1 >/dev/null &\
-			nitrogen --restore;\
-			compton &";
+	char autostart[200]="setxkbmap -option compose:caps;\
+			     nitrogen --restore;\
+			     dwmstatus 2>&1 >/dev/null &\
+			     compton &\
+			     .config/dwm/autostart_apps &";
 	int compRet=system(autostart);
 	if (compRet == -1) {}
 }
