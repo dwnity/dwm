@@ -68,24 +68,32 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "gnome-terminal", NULL };
 static const char *browser[]  = { "firefox", NULL };
+static const char *lanu[] = { "dibus", NULL };
 
 /* custom functions */
-static void toggleemoji();
+static const char emoji[130]="[ `ibus engine` = uniemoji ] && ibus engine `cat .local/dwm/ibus` || `ibus engine > .local/dwm/ibus && ibus engine uniemoji`";
+static const char *toggleemoji[] = { "/bin/sh", "-c",emoji, NULL };
+static const char *scrot[] = { "/bin/sh", "-c", "cd `cat .config/dwm/scrotdir`;scrot", NULL };
+static const char *scrots[] = { "/bin/sh", "-c", "cd `cat .config/dwm/scrotdir`;scrot -s", NULL };
+static const char *voldec[] = { "/bin/sh", "-c", "pactl -- set-sink-volume 0 -10%", NULL };
+static const char *volinc[] = { "/bin/sh", "-c", "pactl -- set-sink-volume 0 +10%", NULL };
+static const char *volmut[] = { "/bin/sh", "-c", "amixer -D pulse set Master toggle", NULL };
 
 static Key keys[] = {
 	/*  type       modifier                         key          function        argument */
 	{ KeyPress,    MODKEY,                          XK_r,        spawn,          {.v = dmenucmd } },
-	{ KeyPress,    MODKEY,                          XK_e,        toggleemoji,    {0} },
 	{ KeyPress,    MODKEY|ShiftMask,                XK_r,	     spawn,          {.v = termcmd } },
+	{ KeyPress,    MODKEY,                          XK_e,        spawn,          {.v = toggleemoji } },
+	{ KeyPress,    MODKEY,                          XK_l,        spawn,          {.v = lanu } },
 	{ KeyPress,    MODKEY|ShiftMask,                XK_Return,   spawn,          {.v = browser } },
+	{ KeyPress,    0,                               XK_Print,    spawn,          {.v = scrot } },
+	{ KeyRelease,  ShiftMask,                       XK_Print,    spawn,          {.v = scrots } },
+	{ KeyPress,    MODKEY|ControlMask,              XK_d,        spawn,	     {.v = voldec} },
+	{ KeyPress,    MODKEY|ControlMask,              XK_i,        spawn,	     {.v = volinc} },
+	{ KeyPress,    MODKEY|ControlMask,              XK_m,        spawn,	     {.v = volmut} },
 	{ KeyPress,    MODKEY|ShiftMask,                XK_d,        setopacity,     {.f = -0.05} },
 	{ KeyPress,    MODKEY|ShiftMask,                XK_i,        setopacity,     {.f = +0.05} },
 	{ KeyPress,    MODKEY|ShiftMask,                XK_f,        setopacity,     {.f = 2.0} },
-	{ KeyPress,    0,                               XK_Print,    spawn,          SHCMD("cd Pictures/screenshots;scrot") },
-	{ KeyRelease,  ControlMask,                     XK_Print,    spawn,          SHCMD("cd Pictures/screenshots;scrot -s") },
-	{ KeyPress,    MODKEY|ControlMask,              XK_d,        spawn,	    SHCMD("pactl -- set-sink-volume 0 -10%") },
-	{ KeyPress,    MODKEY|ControlMask,              XK_i,        spawn,	    SHCMD("pactl -- set-sink-volume 0 +10%") },
-	{ KeyPress,    MODKEY|ControlMask,              XK_m,        spawn,	    SHCMD("amixer -D pulse set Master toggle") },
 	{ KeyPress,    MODKEY,                          XK_b,        togglebar,      {0} },
 	{ KeyPress,    AltMask,                         XK_Tab,      focusstack,     {.i = +1 } },
 	{ KeyPress,    AltMask|ShiftMask,               XK_Tab,      focusstack,     {.i = -1 } },
@@ -130,6 +138,9 @@ static Button buttons[] = {
 	{ ClkLtSymbol,          0,                        Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,                        Button3,        setlayout,      {.v = &layouts[2]} },
 	{ ClkWinTitle,          0,                        Button2,        zoom,           {0} },
+	{ ClkWinTitle,          0,                        Button3,        spawn,          {.v = volinc} },
+	{ ClkWinTitle,          0,                        Button2,        spawn,          {.v = volmut} },
+	{ ClkWinTitle,          0,                        Button1,        spawn,          {.v = voldec} },
 	{ ClkStatusText,        0,                        Button2,        spawn,          {.v = termcmd } },
 	{ ClkClientWin,         MODKEY,                   Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,                   Button2,        togglefloating, {0} },
@@ -140,10 +151,3 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,                   Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,                   Button3,        toggletag,      {0} },
 };
-
-void
-toggleemoji(){
-	char togglelayout[116]="[ `ibus engine` = uniemoji ] && ibus engine `cat $HOME/.ibus` || `ibus engine > $HOME/.ibus && ibus engine uniemoji`";
-	int layRet=system(togglelayout);
-	if (layRet ==-1) {}
-}
