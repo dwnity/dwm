@@ -52,7 +52,8 @@ static const Layout layouts[] = {
 };
 
 /* key definitions */
-#define MODKEY Mod4Mask
+#define MODKEY  Mod4Mask
+#define AltMask Mod1Mask
 #define TAGKEYS(KEY,TAG) \
 	{ KeyPress,    MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ KeyPress,    MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -86,8 +87,8 @@ static Key keys[] = {
 	{ KeyPress,    MODKEY|ControlMask,              XK_i,        spawn,	    SHCMD("pactl -- set-sink-volume 0 +10%") },
 	{ KeyPress,    MODKEY|ControlMask,              XK_m,        spawn,	    SHCMD("amixer -D pulse set Master toggle") },
 	{ KeyPress,    MODKEY,                          XK_b,        togglebar,      {0} },
-	{ KeyPress,    MODKEY,                          XK_j,        focusstack,     {.i = +1 } },
-	{ KeyPress,    MODKEY,                          XK_k,        focusstack,     {.i = -1 } },
+	{ KeyPress,    AltMask,                         XK_Tab,      focusstack,     {.i = +1 } },
+	{ KeyPress,    AltMask|ShiftMask,               XK_Tab,      focusstack,     {.i = -1 } },
 	{ KeyPress,    MODKEY,                          XK_i,        incnmaster,     {.i = +1 } },
 	{ KeyPress,    MODKEY,                          XK_d,        incnmaster,     {.i = -1 } },
 	{ KeyPress,    MODKEY,                          XK_h,        setmfact,       {.f = -0.05} },
