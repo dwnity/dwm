@@ -68,7 +68,8 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_forestgreen, "-sf", col_gray4, NULL };
+static const char *dbash[] = { "dbash", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_forestgreen, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-H", ".bash_history", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_forestgreen, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "gnome-terminal", NULL };
 static const char *browser[]  = { "firefox", NULL };
 static const char *lanu[] = { "dibus", NULL };
@@ -87,6 +88,7 @@ static Key keys[] = {
 	/*  type       modifier                         key          function        argument */
 	{ KeyPress,    MODKEY,                          XK_r,        spawn,          {.v = dmenucmd } },
 	{ KeyPress,    MODKEY|ShiftMask,                XK_r,	     spawn,          {.v = termcmd } },
+	{ KeyPress,    MODKEY|ControlMask,              XK_r,        spawn,          {.v = dbash } },
 	{ KeyPress,    MODKEY,                          XK_e,        spawn,          {.v = toggleemoji } },
 	{ KeyPress,    MODKEY,                          XK_l,        spawn,          {.v = lanu } },
 	{ KeyPress,    MODKEY|ShiftMask,                XK_Return,   spawn,          {.v = browser } },
@@ -141,6 +143,7 @@ static Key keys[] = {
 	{ KeyPress,    MODKEY|ShiftMask,                XK_q,        quit,           {0} },
 };
 
+static const char *powercontrol[] = { "pcon", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_forestgreen, "-sf", col_gray4, NULL };
 /* custom mouse functions */
 static void switchmain(const Arg *arg);
 
@@ -154,6 +157,7 @@ static Button buttons[] = {
 	{ ClkWinTitle,          0,                        Button3,        spawn,          {.v = volinc} },
 	{ ClkWinTitle,          0,                        Button2,        spawn,          {.v = volmut} },
 	{ ClkWinTitle,          0,                        Button1,        spawn,          {.v = voldec} },
+	{ ClkStatusText,        MODKEY|ShiftMask,         Button1,        spawn,          {.v = powercontrol } },
 	{ ClkStatusText,        0,                        Button3,        incnmaster,     {.i = -1 } },
 	{ ClkStatusText,        0,                        Button2,        spawn,          {.v = termcmd } },
 	{ ClkStatusText,        0,                        Button1,        incnmaster,     {.i = +1 } },
