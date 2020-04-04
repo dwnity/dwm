@@ -1458,8 +1458,7 @@ run(void)
 
 void
 runAutostart(void) {
-	char autostart[200]="setxkbmap -option compose:caps;\
-			     nitrogen --restore;\
+	char autostart[200]="/usr/lib/gnome-session/run-systemd-session unity-session.target &\
 			     dwmstatus 2>&1 >/dev/null &\
 			     compton &\
 			     .config/dwm/autostart_apps &";
