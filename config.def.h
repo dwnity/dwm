@@ -42,6 +42,7 @@ static const MonitorRule monrules[] = {
 };
 
 /* layout(s) */
+static const float cfact     = 1.0; /* factor of tiled clients [0.05..4.0] */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
@@ -102,6 +103,8 @@ static Key keys[] = {
 	{ KeyPress,    AltMask|ShiftMask,               XK_Tab,      focusstack,     {.i = -1 } },
 	{ KeyPress,    MODKEY,                          XK_i,        incnmaster,     {.i = +1 } },
 	{ KeyPress,    MODKEY,                          XK_d,        incnmaster,     {.i = -1 } },
+	{ KeyPress,    MODKEY,	                        XK_k,        setcfact,       {.f = +0.10} },
+	{ KeyPress,    MODKEY,	                        XK_j,        setcfact,       {.f = -0.10} },
 	{ KeyPress,    MODKEY,                          XK_h,        setmfact,       {.f = -0.05} },
 	{ KeyPress,    MODKEY,                          XK_l,        setmfact,       {.f = +0.05} },
 	{ KeyPress,    MODKEY,                          XK_Return,   zoom,           {0} },
