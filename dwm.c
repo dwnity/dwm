@@ -141,6 +141,15 @@ typedef struct {
 	int monitor;
 } Rule;
 
+typedef struct {
+        int monitor;
+        int layout;
+        float mfact;
+        int nmaster;
+        int showBar;
+        int topBar;
+} MonitorRule;
+
 /* function declarations */
 static void applyrules(Client *c);
 static int applysizehints(Client *c, int *x, int *y, int *w, int *h, int interact);
@@ -631,17 +640,26 @@ configurerequest(XEvent *e)
 Monitor *
 createmon(void)
 {
-	Monitor *m;
+	Monitor *m, *mi;
+	unsigned int mc, j;
+	const MonitorRule *mr;
 
 	m = ecalloc(1, sizeof(Monitor));
 	m->tagset[0] = m->tagset[1] = 1;
-	m->mfact = mfact;
-	m->nmaster = nmaster;
-	m->showbar = showbar;
-	m->topbar = topbar;
-	m->lt[0] = &layouts[0];
-	m->lt[1] = &layouts[1 % LENGTH(layouts)];
-	strncpy(m->ltsymbol, layouts[0].symbol, sizeof m->ltsymbol);
+	for (mc = 0, mi = mons; mi; mi = mi->next, mc++);
+	for (j = 0; j < LENGTH(monrules); j++) {
+		mr = &monrules[j];
+		if ((mr->monitor == -1 || mr->monitor == mc)) {
+			m->mfact = mr->mfact;
+			m->nmaster = mr->nmaster;
+			m->showbar = mr->showBar;
+			m->topbar = mr->topBar;
+			m->lt[0] = &layouts[mr->layout];
+			m->lt[1] = &layouts[1 % LENGTH(layouts)];
+			strncpy(m->ltsymbol, layouts[mr->layout].symbol, sizeof m->ltsymbol);
+			break;
+		}
+	}
 	return m;
 }
 
