@@ -76,6 +76,7 @@ static const char emoji[130]="[ `ibus engine` = uniemoji ] && ibus engine `cat .
 static const char *toggleemoji[] = { "/bin/sh", "-c",emoji, NULL };
 static const char *scrot[] = { "/bin/sh", "-c", "cd `cat .config/dwm/scrotdir`;scrot", NULL };
 static const char *scrots[] = { "/bin/sh", "-c", "cd `cat .config/dwm/scrotdir`;scrot -s", NULL };
+static const char *scrotu[] = { "/bin/sh", "-c", "cd `cat .config/dwm/scrotdir`;scrot -u", NULL };
 static const char *voldec[] = { "/bin/sh", "-c", "pactl -- set-sink-volume 0 -10%", NULL };
 static const char *volinc[] = { "/bin/sh", "-c", "pactl -- set-sink-volume 0 +10%", NULL };
 static const char *volmut[] = { "/bin/sh", "-c", "amixer -D pulse set Master toggle", NULL };
@@ -89,6 +90,7 @@ static Key keys[] = {
 	{ KeyPress,    MODKEY|ShiftMask,                XK_Return,   spawn,          {.v = browser } },
 	{ KeyPress,    0,                               XK_Print,    spawn,          {.v = scrot } },
 	{ KeyRelease,  ShiftMask,                       XK_Print,    spawn,          {.v = scrots } },
+	{ KeyRelease,  ControlMask,                     XK_Print,    spawn,          {.v = scrotu } },
 	{ KeyPress,    MODKEY|ControlMask,              XK_d,        spawn,	     {.v = voldec} },
 	{ KeyPress,    MODKEY|ControlMask,              XK_i,        spawn,	     {.v = volinc} },
 	{ KeyPress,    MODKEY|ControlMask,              XK_m,        spawn,	     {.v = volmut} },
