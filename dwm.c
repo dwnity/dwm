@@ -121,6 +121,7 @@ struct Monitor {
 	int by;               /* bar geometry */
 	int mx, my, mw, mh;   /* screen size */
 	int wx, wy, ww, wh;   /* window area  */
+	double defaultopacity;
 	unsigned int borderpx;
 	unsigned int seltags;
 	unsigned int sellt;
@@ -154,6 +155,7 @@ typedef struct {
         int showBar;
         int topBar;
         unsigned int borderpx;
+        double defaultopacity;
 } MonitorRule;
 
 /* function declarations */
@@ -665,6 +667,7 @@ createmon(void)
 			m->showbar = mr->showBar;
 			m->topbar = mr->topBar;
 			m->borderpx = mr->borderpx;
+			m->defaultopacity = mr->defaultopacity;
 			m->lt[0] = &layouts[mr->layout];
 			m->lt[1] = &layouts[1 % LENGTH(layouts)];
 			strncpy(m->ltsymbol, layouts[mr->layout].symbol, sizeof m->ltsymbol);
@@ -1060,7 +1063,7 @@ manage(Window w, XWindowAttributes *wa)
 	c->w = c->oldw = wa->width;
 	c->h = c->oldh = wa->height;
 	c->oldbw = wa->border_width;
-	c->activeopacity = defaultopacity;
+	c->activeopacity = selmon->defaultopacity;
 	c->inactiveopacity = inactiveopacity;
 
 	updatetitle(c);
@@ -1585,7 +1588,7 @@ setopacity(const Arg *arg)
 	if(arg->f == 1.0)
 		f = arg->f;
 	else if (arg->f == 2.0)
-		f = defaultopacity;
+		f = selmon->defaultopacity;
 	else if (f < 0 || f > 1.0)
 		return;
 	c->activeopacity = f;

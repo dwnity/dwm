@@ -2,7 +2,6 @@
 
 /* appearance */
 static const unsigned int snap      = 32;       /* snap pixel */
-static const double defaultopacity = 0.90;
 static const double inactiveopacity = 0.80;
 static const char *fonts[]          = { "monospace:size=10" };
 static const char dmenufont[]       = "monospace:size=10";
@@ -31,9 +30,9 @@ static const Rule rules[] = {
 };
 
 static const MonitorRule monrules[] = {
-	/* monitor layout  mfact  nmaster  showbar  topbar  borderpx */
-	{  1,      0,      0.50,    -1,      1,      1,     1     }, // use a different layout for the second monitor
-	{  -1,     0,      0.55,    1,      1,      1,     1     }, // default
+	/* monitor layout  mfact  nmaster  showbar  topbar  borderpx  defaultopacity */
+	{  1,      0,      0.50,    -1,      1,      1,     1,         0.95     }, // use a different layout for the second monitor
+	{  -1,     0,      0.55,    1,      1,      1,     1,         0.95     }, // default
 };
 
 /* layout(s) */
