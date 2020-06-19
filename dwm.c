@@ -119,6 +119,7 @@ struct Monitor {
 	int by;               /* bar geometry */
 	int mx, my, mw, mh;   /* screen size */
 	int wx, wy, ww, wh;   /* window area  */
+	unsigned int borderpx;
 	unsigned int seltags;
 	unsigned int sellt;
 	unsigned int tagset[2];
@@ -148,6 +149,7 @@ typedef struct {
         int nmaster;
         int showBar;
         int topBar;
+        unsigned int borderpx;
 } MonitorRule;
 
 /* function declarations */
@@ -654,6 +656,7 @@ createmon(void)
 			m->nmaster = mr->nmaster;
 			m->showbar = mr->showBar;
 			m->topbar = mr->topBar;
+			m->borderpx = mr->borderpx;
 			m->lt[0] = &layouts[mr->layout];
 			m->lt[1] = &layouts[1 % LENGTH(layouts)];
 			strncpy(m->ltsymbol, layouts[mr->layout].symbol, sizeof m->ltsymbol);
@@ -1066,7 +1069,7 @@ manage(Window w, XWindowAttributes *wa)
 	/* only fix client y-offset, if the client center might cover the bar */
 	c->y = MAX(c->y, ((c->mon->by == c->mon->my) && (c->x + (c->w / 2) >= c->mon->wx)
 		&& (c->x + (c->w / 2) < c->mon->wx + c->mon->ww)) ? bh : c->mon->my);
-	c->bw = borderpx;
+	c->bw = selmon->borderpx;
 
 	wc.border_width = c->bw;
 	XConfigureWindow(dpy, w, CWBorderWidth, &wc);
