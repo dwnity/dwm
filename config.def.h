@@ -1,7 +1,6 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const char *fonts[]          = { "monospace:size=10" };
 static const char dmenufont[]       = "monospace:size=10";
@@ -30,9 +29,9 @@ static const Rule rules[] = {
 };
 
 static const MonitorRule monrules[] = {
-	/* monitor layout  mfact  nmaster  showbar  topbar */
-	{  1,      0,      0.55,    -1,      1,      1     }, // use a different layout for the second monitor
-	{  -1,     0,      0.55,    1,      1,      1     }, // default
+	/* monitor layout  mfact  nmaster  showbar  topbar  borderpx */
+	{  1,      0,      0.50,    -1,      1,      1,     1     }, // use a different layout for the second monitor
+	{  -1,     0,      0.55,    1,      1,      1,     1     }, // default
 };
 
 /* layout(s) */
