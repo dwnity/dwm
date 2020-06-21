@@ -9,17 +9,20 @@ static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
-static const char col_forestgreen[] = "#228B22";
+static const char col_forestgreen[] = "#008822";
+static const char col_lightgreen[] = "#00ff22";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
+	[SchemeTitle] = { col_lightgreen, col_gray1, col_gray2 },
 	[SchemeSel]  = { col_gray4, col_forestgreen,  col_forestgreen  },
 };
 
 static const unsigned int alphas[][3]      = {
 	/*               fg      bg        border     */
 	[SchemeNorm] = { OPAQUE, ALPHA,  OPAQUE},
-	[SchemeSel]  = { OPAQUE, ALPHA,  OPAQUE},
+	[SchemeTitle]  = { ALPHA, ALPHA,  OPAQUE},
+	[SchemeSel]  = { OPAQUE, OPAQUE,  OPAQUE},
 };
 
 /* tagging */
