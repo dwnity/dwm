@@ -125,6 +125,7 @@ struct Monitor {
 	int wx, wy, ww, wh;   /* window area  */
 	double defaultopacity;
 	unsigned int borderpx;
+	unsigned int defaultborderpx;
 	unsigned int seltags;
 	unsigned int sellt;
 	unsigned int tagset[2];
@@ -676,6 +677,7 @@ createmon(void)
 			m->showbar = mr->showBar;
 			m->topbar = mr->topBar;
 			m->borderpx = mr->borderpx;
+			m->defaultborderpx = mr->borderpx;
 			m->defaultopacity = mr->defaultopacity;
 			m->lt[0] = &layouts[mr->layout];
 			m->lt[1] = &layouts[1 % LENGTH(layouts)];
@@ -1485,7 +1487,7 @@ setborderpx(const Arg *arg)
 	int prev_borderpx = selmon->borderpx;
 
 	if (arg->i == 0)
-		selmon->borderpx = borderpx;
+		selmon->borderpx = selmon->defaultborderpx;
 	else if (selmon->borderpx + arg->i < 0 || arg->i == 2)
 		selmon->borderpx = 0;
 	else
@@ -1503,10 +1505,10 @@ setborderpx(const Arg *arg)
 				resize(c, c->x, c->y, c->w-(arg->i*2), c->h-(arg->i*2), 0);
 			else if (arg->i != 0)
 				resizeclient(c, c->x, c->y, c->w, c->h);
-			else if (prev_borderpx > borderpx)
-				resize(c, c->x, c->y, c->w + 2*(prev_borderpx - borderpx), c->h + 2*(prev_borderpx - borderpx), 0);
-			else if (prev_borderpx < borderpx)
-				resize(c, c->x, c->y, c->w-2*(borderpx - prev_borderpx), c->h-2*(borderpx - prev_borderpx), 0);
+			else if (prev_borderpx > selmon->defaultborderpx)
+				resize(c, c->x, c->y, c->w + 2*(prev_borderpx - selmon->defaultborderpx), c->h + 2*(prev_borderpx - selmon->defaultborderpx), 0);
+			else if (prev_borderpx < selmon->defaultborderpx)
+				resize(c, c->x, c->y, c->w-2*(selmon->defaultborderpx - prev_borderpx), c->h-2*(selmon->defaultborderpx - prev_borderpx), 0);
 		}
 	}
 	arrange(selmon);
