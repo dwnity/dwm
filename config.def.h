@@ -35,6 +35,7 @@ static const Rule rules[] = {
 	{ "Nitrogen", NULL,       NULL,       0,            1,           -1,     -1,     -1 },
 	{ "discord",  NULL,       NULL,       1 << 4,       0,           -1,     -1,     -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1,     0.95,   1.0 },
+	{ "st",       NULL,       NULL,       0,            1,           -1,     -1,     1.0 },
 };
 
 static const MonitorRule monrules[] = {
