@@ -228,6 +228,7 @@ static void updatetitle(Client *c);
 static void updatewindowtype(Client *c);
 static void updatewmhints(Client *c);
 static void view(const Arg *arg);
+static void viewmon(const Arg *arg);
 static Client *wintoclient(Window w);
 static Monitor *wintomon(Window w);
 static int xerror(Display *dpy, XErrorEvent *ee);
@@ -2045,6 +2046,24 @@ view(const Arg *arg)
 		selmon->tagset[selmon->seltags] = arg->ui & TAGMASK;
 	focus(NULL);
 	arrange(selmon);
+}
+
+void
+viewmon(const Arg *arg)
+{
+	Monitor *m;
+
+	if (!mons->next)
+		return;
+	if ((m = dirtomon(arg->i)) == selmon)
+		return;
+	if ((arg->ui & TAGMASK) == m->tagset[m->seltags])
+		return;
+	m->seltags ^= 1; /* toggle sel tagset */
+	if (arg->ui & TAGMASK)
+		m->tagset[m->seltags] = arg->ui & TAGMASK;
+	focus(NULL);
+	arrange(m);
 }
 
 Client *
