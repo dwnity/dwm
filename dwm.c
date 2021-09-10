@@ -1458,7 +1458,7 @@ run(void)
 
 void
 runAutostart(void) {
-	char autostart[200]="/usr/lib/gnome-session/run-systemd-session unity-session.target &\
+	char autostart[200]="unity-settings-daemon &\
 			     dwmstatus 2>&1 >/dev/null &\
 			     compton &\
 			     .config/dwm/autostart_apps &";
