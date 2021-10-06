@@ -152,7 +152,7 @@ static Key keys[] = {
 	{ KeyPress,    MODKEY|ShiftMask,                XK_q,        quit,           {0} },
 };
 
-static const char *powercontrol[] = { "pcon", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_forestgreen, "-sf", col_gray4, NULL };
+static const char *powercontrol[] = { "dpower", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_forestgreen, "-sf", col_gray4, NULL };
 static const char *dappo[] = { "dappo", NULL };
 /* custom mouse functions */
 static void switchmain(const Arg *arg);
