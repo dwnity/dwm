@@ -34,7 +34,7 @@ static const Rule rules[] = {
 	 *      WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor opacity inactiveopacity*/
-	{ "Gimp",       NULL,       NULL,       0,            1,           -1,     -1,     -1 },
+	{ "Gimp",       NULL,       NULL,       1 << 5,       0,           -1,     -1,     -1 },
 	{ "Nitrogen",   NULL,       NULL,       0,            1,           -1,     -1,     -1 },
 	{ "discord",    NULL,       NULL,       1 << 4,       0,           -1,     -1,     -1 },
 	{ "Firefox",    NULL,       NULL,       1 << 8,       0,           -1,     0.95,   1.0 },
