@@ -11,11 +11,12 @@ static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_forestgreen[] = "#008822";
 static const char col_lightgreen[] = "#00ff22";
+static const char col_darkforest[] = "#005816";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
 	[SchemeTitle] = { col_lightgreen, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_forestgreen,  col_forestgreen  },
+	[SchemeSel]  = { col_lightgreen, col_darkforest,  col_darkforest  },
 };
 
 static const unsigned int alphas[][3]      = {
@@ -76,8 +77,8 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dbash[] = { "dbash", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_forestgreen, "-sf", col_gray4, NULL };
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-H", ".bash_history", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_forestgreen, "-sf", col_gray4, NULL };
+static const char *dbash[] = { "dbash", "-m", dmenumon, "-fn", dmenufont, "-nb", col_forestgreen, "-nf", col_lightgreen, "-sb", col_lightgreen, "-sf", col_forestgreen, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-H", ".bash_history", "-fn", dmenufont, "-nb", col_forestgreen, "-nf", col_lightgreen, "-sb", col_lightgreen, "-sf", col_forestgreen, NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *browser[]  = { "firefox", NULL };
 static const char *lanu[] = { "dibus", NULL };
