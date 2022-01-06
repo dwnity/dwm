@@ -26,6 +26,14 @@ static const unsigned int alphas[][3]      = {
 	[SchemeSel]  = { OPAQUE, OPAQUE,  OPAQUE},
 };
 
+static const char *const autostart[] = {
+       "/usr/lib/gnome-session/run-systemd-session", "dwm-unity-session.target",
+       "dwmstatus", NULL,
+       "compton", NULL,
+       "appimaged", NULL,
+       NULL /* terminate */
+};
+
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
