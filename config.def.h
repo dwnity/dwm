@@ -27,7 +27,7 @@ static const unsigned int alphas[][3]      = {
 };
 
 static const char *const autostart[] = {
-       "/usr/lib/gnome-session/run-systemd-session", "dwm-unity-session.target",
+       "/usr/lib/gnome-session/run-systemd-session", "dwm-unity-session.target", NULL,
        "dwmstatus", NULL,
        "compton", NULL,
        NULL /* terminate */
