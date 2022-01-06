@@ -30,7 +30,6 @@ static const char *const autostart[] = {
        "/usr/lib/gnome-session/run-systemd-session", "dwm-unity-session.target",
        "dwmstatus", NULL,
        "compton", NULL,
-       "appimaged", NULL,
        NULL /* terminate */
 };
 
