@@ -75,7 +75,7 @@ static const Layout layouts[] = {
 #define NumLock Mod2Mask
 #define TAGKEYS(KEY,TAG) \
 	{ KeyPress,  MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
-	{ KeyPress,  MODKEY|AltMask,               KEY,      viewmon,           {.ui = 1 << TAG} }, \
+	{ KeyPress,  MODKEY|AltMask,               KEY,      viewmon,        {.ui = 1 << TAG} }, \
 	{ KeyPress,  MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
 	{ KeyPress,  MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
 	{ KeyPress,  MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
