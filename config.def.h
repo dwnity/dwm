@@ -138,6 +138,7 @@ static Key keys[] = {
 	{ KeyPress,    MODKEY,                          XK_space,    setlayout,      {0} },
 	{ KeyPress,    MODKEY|ShiftMask,                XK_space,    togglefloating, {0} },
 	{ KeyPress,    MODKEY,                          XK_0,        view,           {.ui = ~0 } },
+	{ KeyPress,    MODKEY|AltMask,                  XK_0,        viewmon,        {.ui = ~0 } },
 	{ KeyPress,    MODKEY|ShiftMask,                XK_0,        tag,            {.ui = ~0 } },
 	{ KeyPress,    MODKEY,                          XK_comma,    focusmon,       {.i = -1 } },
 	{ KeyPress,    MODKEY,                          XK_period,   focusmon,       {.i = +1 } },
